@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_7b72c2f7b1b141e276712edf72b98635 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+        
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/leaflet.markercluster.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/MarkerCluster.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/MarkerCluster.Default.css"/>
+</head>
+<body>
+    
+    
+    <style>
+        .pdf-modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0, 0, 0, 0.7); z-index: 9999;
+            display: none; justify-content: center; align-items: center;
+        }
+        .pdf-modal-content {
+            position: relative; background-color: #fff; padding: 20px;
+            border-radius: 5px; width: 80%; height: 90%;
+            display: flex; flex-direction: column;
+        }
+        .pdf-modal-close {
+            position: absolute; top: -10px; right: -10px; width: 30px; height: 30px;
+            background: black; color: white; border-radius: 50%;
+            text-align: center; line-height: 30px; cursor: pointer;
+            font-family: sans-serif; font-weight: bold;
+        }
+        .pdf-iframe { flex-grow: 1; border: none; }
+    </style>
+
+    <div id="pdfModal" class="pdf-modal-overlay" onclick="hidePdfModal()">
+        <div class="pdf-modal-content" onclick="event.stopPropagation();">
+            <span class="pdf-modal-close" onclick="hidePdfModal()">X</span>
+            <iframe id="pdfIframe" class="pdf-iframe" src=""></iframe>
+        </div>
+    </div>
+
+    <script>
+        const modal = document.getElementById('pdfModal');
+        const iframe = document.getElementById('pdfIframe');
+        function showPdfModal(pdfPath) {
+            iframe.src = pdfPath;
+            modal.style.display = 'flex';
+        }
+        function hidePdfModal() {
+            iframe.src = '';
+            modal.style.display = 'none';
+        }
+    </script>
+    
+    
+            <div class="folium-map" id="map_7b72c2f7b1b141e276712edf72b98635" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_7b72c2f7b1b141e276712edf72b98635 = L.map(
+                "map_7b72c2f7b1b141e276712edf72b98635",
+                {
+                    center: [51.342, 12.374],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 12,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_0f578e583398380fbc9bf776935e6dbe = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_0f578e583398380fbc9bf776935e6dbe.addTo(map_7b72c2f7b1b141e276712edf72b98635);
+        
+    
+            var tile_layer_3407bd3bdc41eb36fcd05f6fae7eef5f = L.tileLayer(
+                "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+                {
+  "minZoom": 0,
+  "maxZoom": 18,
+  "maxNativeZoom": 18,
+  "noWrap": false,
+  "attribution": "Tiles \u0026copy; Esri",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_3407bd3bdc41eb36fcd05f6fae7eef5f.addTo(map_7b72c2f7b1b141e276712edf72b98635);
+        
+    
+            var tile_layer_e7fe6644005f2944652ebd91fcff2b87 = L.tileLayer(
+                "https://mt1.google.com/vt/lyrs=s,h\u0026x={x}\u0026y={y}\u0026z={z}",
+                {
+  "minZoom": 0,
+  "maxZoom": 18,
+  "maxNativeZoom": 18,
+  "noWrap": false,
+  "attribution": "Google",
+  "subdomains": [
+"mt0",
+"mt1",
+"mt2",
+"mt3",
+],
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_e7fe6644005f2944652ebd91fcff2b87.addTo(map_7b72c2f7b1b141e276712edf72b98635);
+        
+    
+            var marker_cluster_54c4879bfeab23d50b5aa529ca8faf26 = L.markerClusterGroup(
+                {
+}
+            );
+        
+    
+            var marker_3164db8f373080b93e9cc1a838b16bec = L.marker(
+                [51.2989016, 12.6119658],
+                {
+}
+            ).addTo(marker_cluster_54c4879bfeab23d50b5aa529ca8faf26);
+        
+    
+        var popup_9ee3b38044475957b942ce65330c3547 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_28f90cd2f75990081b2ee735f654ad5e = $(`<div id="html_28f90cd2f75990081b2ee735f654ad5e" style="width: 100.0%; height: 100.0%;"><b>Einstieg 2</b><br><a href='#' onclick='showPdfModal("Moritzsee_2.pdf"); return false;' style='color: blue; text-decoration: underline;'>PDF anzeigen</a></div>`)[0];
+                popup_9ee3b38044475957b942ce65330c3547.setContent(html_28f90cd2f75990081b2ee735f654ad5e);
+            
+        
+
+        marker_3164db8f373080b93e9cc1a838b16bec.bindPopup(popup_9ee3b38044475957b942ce65330c3547)
+        ;
+
+        
+    
+    
+            marker_3164db8f373080b93e9cc1a838b16bec.bindTooltip(
+                `<div>
+                     Einstieg 2
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            marker_cluster_54c4879bfeab23d50b5aa529ca8faf26.addTo(map_7b72c2f7b1b141e276712edf72b98635);
+        
+    
+            var polygon_ad5d420e03665aed7d6a0e7ef3c12333 = L.polygon(
+                [[51.3014805, 12.600274], [51.2994412, 12.5982141], [51.2962212, 12.6038146], [51.2928667, 12.6104879], [51.2957382, 12.6152086], [51.2965566, 12.6146507], [51.2986363, 12.6124191], [51.2996157, 12.6099085], [51.2995486, 12.608664], [51.2988643, 12.6075911], [51.2999108, 12.6052737], [51.3005682, 12.6032137], [51.3014805, 12.600274]],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "cyan", "fillOpacity": 0.4, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_7b72c2f7b1b141e276712edf72b98635);
+        
+    
+        var popup_b375f93ab777ed9ce272a0bbd9582067 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_38c12ae76aaae2138f9c7152d9859554 = $(`<div id="html_38c12ae76aaae2138f9c7152d9859554" style="width: 100.0%; height: 100.0%;"><b>Moritzsee</b></div>`)[0];
+                popup_b375f93ab777ed9ce272a0bbd9582067.setContent(html_38c12ae76aaae2138f9c7152d9859554);
+            
+        
+
+        polygon_ad5d420e03665aed7d6a0e7ef3c12333.bindPopup(popup_b375f93ab777ed9ce272a0bbd9582067)
+        ;
+
+        
+    
+    
+            polygon_ad5d420e03665aed7d6a0e7ef3c12333.bindTooltip(
+                `<div>
+                     Moritzsee
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var layer_control_adabe116c22184f4e037b2f7b3c857e5_layers = {
+                base_layers : {
+                    "openstreetmap" : tile_layer_0f578e583398380fbc9bf776935e6dbe,
+                    "Satellit" : tile_layer_3407bd3bdc41eb36fcd05f6fae7eef5f,
+                    "Satellit mit Stra\u00dfen" : tile_layer_e7fe6644005f2944652ebd91fcff2b87,
+                },
+                overlays :  {
+                    "macro_element_54c4879bfeab23d50b5aa529ca8faf26" : marker_cluster_54c4879bfeab23d50b5aa529ca8faf26,
+                },
+            };
+            let layer_control_adabe116c22184f4e037b2f7b3c857e5 = L.control.layers(
+                layer_control_adabe116c22184f4e037b2f7b3c857e5_layers.base_layers,
+                layer_control_adabe116c22184f4e037b2f7b3c857e5_layers.overlays,
+                {
+  "position": "topright",
+  "collapsed": true,
+  "autoZIndex": true,
+}
+            ).addTo(map_7b72c2f7b1b141e276712edf72b98635);
+
+        
+</script>
+</html>
